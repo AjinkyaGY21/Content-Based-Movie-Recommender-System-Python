@@ -2,8 +2,12 @@ import pickle
 import streamlit as st
 import requests
 import pandas as pd
+import os
 
-movie_dict = pickle.load(open(r"E:\NEW_FOLDER\Projects_Java_Python\Movie Recommender System\movie_dict.pkl", "rb"))
+
+movie_dict_path = os.path.join(os.path.dirname(__file__), "movie_dict.pkl")
+movie_dict = pickle.load(open(movie_dict_path, "rb"))
+
 
 movies = pd.DataFrame(movie_dict)
 
