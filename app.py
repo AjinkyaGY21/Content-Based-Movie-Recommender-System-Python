@@ -5,15 +5,45 @@ import pandas as pd
 import os
 
 
-movie_dict_path = os.path.join(os.path.dirname(__file__), "movie_dict.pkl")
-movie_dict = pickle.load(open(movie_dict_path, "rb"))
+# Google Drive direct download URLs
+MOVIE_DICT_URL = "https://drive.google.com/uc?export=download&id=1agHhtrmIQ4i4B-dhyuH8ryAWtZAon-SW"
+SIM_MAT_URL = "https://drive.google.com/uc?export=download&id=1EbEPHAn-2ONVw5_nqEbglQxEYi5GZgs7"
+
+
+# Function to download a file from a URL
+def download_file(url, save_path):
+    response = requests.get(url, stream=True)
+    with open(save_path, "wb") as f:
+        for chunk in response.iter_content(chunk_size=8192):
+            f.write(chunk)
+
+
+# Define file paths
+movie_dict_path = "movie_dict.pkl"
+sim_mat_path = "sim_mat.pkl"
+
+
+# Download the files if they do not exist
+if not os.path.exists(movie_dict_path):
+    print("Downloading movie_dict.pkl...")
+    download_file(MOVIE_DICT_URL, movie_dict_path)
+
+if not os.path.exists(sim_mat_path):
+    print("Downloading sim_mat.pkl...")
+    download_file(SIM_MAT_URL, sim_mat_path)
+
+# Load the pickle files
+with open(movie_dict_path, "rb") as f:
+    movie_dict = pickle.load(f)
+
+with open(sim_mat_path, "rb") as f:
+    sim_mat = pickle.load(f)
+
+
+print("Files loaded successfully!")
 
 
 movies = pd.DataFrame(movie_dict)
-
-
-sim_mat_path = os.path.join(os.path.dirname(__file__), "sim_mat.pkl")
-sim_mat = pickle.load(open(sim_mat_path, "rb"))
 
 
 api_key = "8265bd1679663a7ea12ac168da84d2e8"
