@@ -1,5 +1,5 @@
 numpy<2
-scipy<1.11
+scipy==1.9.3 --only-binary scipy 
 scikit-learn
 pandas
 matplotlib
@@ -7,5 +7,5 @@ seaborn
 joblib
 streamlit
 tensorflow
-pytorch
+torch  
 plotly
