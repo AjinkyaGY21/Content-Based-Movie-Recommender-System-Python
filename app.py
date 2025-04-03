@@ -89,4 +89,4 @@ if st.button("Recommend"):
         cols[i].write(f"<span style='{font_style}'>{names[i]}</span>", unsafe_allow_html=True)
 
         # Display the movie poster below the corresponding name
-        cols[i].image(posters[i], use_column_width=True)
+        cols[i].image(posters[i], use_container_width=True)
