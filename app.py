@@ -11,7 +11,10 @@ movie_dict = pickle.load(open(movie_dict_path, "rb"))
 
 movies = pd.DataFrame(movie_dict)
 
-sim_mat = pickle.load(open(r"E:\NEW_FOLDER\Projects_Java_Python\Movie Recommender System\sim_mat.pkl", "rb"))
+
+sim_mat_path = os.path.join(os.path.dirname(__file__), "sim_mat.pkl")
+sim_mat = pickle.load(open(sim_mat_path, "rb"))
+
 
 api_key = "8265bd1679663a7ea12ac168da84d2e8"
 st.title('Movie Recommender System')
