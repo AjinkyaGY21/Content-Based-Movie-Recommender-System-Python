@@ -1,134 +1,142 @@
-# 🎬 Movie Recommender App - Step-by-Step Guide
+# 🎬 Movie Recommender System — Content-Based Filtering
 
-Welcome to the **Movie Recommender App**! This guide will help you set up and run the application locally. The app suggests similar movies based on user input using a **cosine similarity matrix** generated from the TMDB (The Movie Database) dataset.
+[![Streamlit App](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://content-based-movie-recommender-system-python-egywkb7tewyk2hfh.streamlit.app/)
+
+🔗 **Live Demo:**  
+👉 [Click to Try the App!](https://content-based-movie-recommender-system-python-egywkb7tewyk2hfh.streamlit.app/)
+
+---
+
+## 🚀 Introduction
+
+Welcome to the **Movie Recommender App**!  
+This application suggests similar movies based on user input using **content-based filtering** and **cosine similarity** — built entirely inside a **single `app.py`** without needing any heavy `.pkl` model files!
 
 ---
 
 ## ✨ Features
 
-✅ Recommends movies based on user input.  
-✅ Displays movie details (title, overview, and poster image).  
-✅ Provides an interactive, user-friendly interface using **Streamlit**.  
+✅ Recommends movies based on your favorite movie 🎥  
+✅ Displays movie titles and posters dynamically  
+✅ Built with an interactive **Streamlit** frontend  
+✅ Lightweight — No model files stored separately  
+✅ Deploy-ready for **Streamlit Cloud** 🚀
 
 ---
 
-## 📝 Theoretical Understanding
+## 🧠 How Does It Work?
 
-### 🔍 How Does It Work?
-1. **Data Collection:** The app uses the TMDB dataset, which includes movie metadata and credits.
-2. **Feature Extraction:** Important features like genres, cast, and crew are extracted.
-3. **Text Processing & Vectorization:** A similarity matrix is created using the **cosine similarity** metric.
-4. **Recommendation Algorithm:** Given a movie title, the app finds the most similar movies using the precomputed similarity matrix.
+1. **Data Collection**: Uses TMDB movie metadata (`movies.csv` and `credits.csv`).
+2. **Feature Engineering**: Merges relevant fields like genres, cast, crew, keywords.
+3. **Text Processing**: Cleans and processes text using NLP techniques.
+4. **Vectorization**: Applies **Bag-of-Words** to feature columns.
+5. **Similarity Computation**: Calculates **cosine similarity** between movies.
+6. **Recommendation Logic**: Suggests top 5 similar movies based on the chosen movie.
 
 ---
 
-## 👨‍💻 Setup & Installation
+## 🗂 Project Structure
 
-Follow these steps to run the app locally:
+| File/Directory    | Purpose                                   |
+|-------------------|-------------------------------------------|
+| `app.py`           | Main Streamlit application (single file). |
+| `movies.csv`       | Movie metadata dataset.                  |
+| `credits.csv`      | Credits information dataset.             |
+| `requirements.txt` | Python dependencies list.                |
 
-### ➕ Step 1: Clone the Repository
+---
+
+## 📂 Data Files
+
+Since GitHub has file size limits, you can download the datasets directly:
+
+- 📄 [movies.csv](https://drive.google.com/file/d/1V9dVf03-4B92vRv6TyI-LAFF4sNiEVRu/view?usp=drive_link)
+- 📄 [credits.csv](https://drive.google.com/file/d/16T6VczZmXpjHqWhmJORHcHXiEJxPHaQO/view?usp=drive_link)
+
+Move them into your project folder.
+
+---
+
+## 👨‍💻 Local Setup Guide
+
+### 1️⃣ Clone the Repository
 ```bash
-# Clone the project repository
 git clone https://github.com/yourusername/movie-recommender.git
 cd movie-recommender
 ```
 
 ---
 
-### ➕ Step 2: Install Dependencies
-Create a virtual environment and install the required Python libraries.
+### 2️⃣ Install Dependencies
 ```bash
 # Create a virtual environment
 python -m venv env
 
-# Activate the virtual environment
+# Activate
 # Windows
 env\Scripts\activate
 # macOS/Linux
 source env/bin/activate
 
-# Install dependencies
+# Install packages
 pip install -r requirements.txt
 ```
 
 ---
 
-### ➕ Step 3: Set Up TMDB API Key
-Register on [TMDB](https://www.themoviedb.org/) and get your API key.
-Create a **.env** file in the root directory and add:
-```env
-TMDB_API_KEY=your_api_key_here
+### 3️⃣ Add TMDB API Key
+1. Create an account at [TMDB](https://www.themoviedb.org/).
+2. Get your free API Key.
+3. Inside `app.py`, replace:
+```python
+api_key = "your_api_key_here"
 ```
+with your actual TMDB API key.
 
 ---
 
-### ➕ Step 4: Prepare Data Files
-🔄 **Download & Save the Required Files**
-Since GitHub has a file size limit of 25MB, we need to download the required `.pkl` files manually.
-
-#### **Download Links:**
-- 🔒 [movie_dict.pkl](https://drive.google.com/uc?export=download&id=1agHhtrmIQ4i4B-dhyuH8ryAWtZAon-SW)
-- 🔒 [sim_mat.pkl](https://drive.google.com/uc?export=download&id=1EbEPHAn-2ONVw5_nqEbglQxEYi5GZgs7)
-
-🛠 **Move the files** to the project folder.
-```bash
-mv ~/Downloads/movie_dict.pkl ./
-mv ~/Downloads/sim_mat.pkl ./
-```
-
----
-
-### ➕ Step 5: Run the App
-🎉 Now, let's start the Streamlit app!
+### 4️⃣ Run the Application
 ```bash
 streamlit run app.py
 ```
+🎉 Access the app at `http://localhost:8501/`
 
 ---
 
-## 🌟 Files & Directories Explained
+## 🌎 Deployment Instructions
 
-| File/Directory   | Description |
-|-----------------|-------------|
-| `app.py`        | Main application script. |
-| `movie_dict.pkl`| Precomputed movie dictionary. |
-| `sim_mat.pkl`   | Precomputed similarity matrix. |
-| `requirements.txt` | List of dependencies. |
-| `setup.sh`      | Environment setup script. |
-| `Procfile`      | Defines commands for deployment. |
+### Deploy to **Streamlit Cloud**
+1. Push the project to your GitHub repository.
+2. Visit [Streamlit Cloud](https://streamlit.io/cloud).
+3. Connect your GitHub repo and deploy in minutes!
 
 ---
 
-## 🚀 Deployment (Optional)
-If you want to deploy the app, you can use **Streamlit Cloud** or **Heroku**.
+## 🎯 Tech Stack
 
-### **🌐 Deploy on Streamlit Cloud**
-1. Push your code to a **public GitHub repo**.
-2. Go to [Streamlit Cloud](https://share.streamlit.io/) and deploy your repo.
-
-### **🛠 Deploy on Heroku**
-1. Install Heroku CLI:
-```bash
-pip install heroku
-```
-2. Create a `Procfile`:
-```bash
-echo "web: streamlit run app.py" > Procfile
-```
-3. Deploy:
-```bash
-git init
-git add .
-git commit -m "Deploy"
-heroku create your-app-name
-git push heroku master
-heroku open
-```
+- **Python** 🐍
+- **Pandas**, **NumPy**
+- **Scikit-learn** (for text vectorization)
+- **Streamlit** (for frontend)
+- **NLTK** (for text preprocessing)
+- **Requests** (to fetch movie posters from TMDB API)
 
 ---
 
-## 🌟 Conclusion
-Congratulations! You have successfully set up the **Movie Recommender App** on your local machine. Now, you can explore movie recommendations and experiment with different datasets.
+## 📈 Key Highlights
 
+- Content-Based Filtering (NLP + Cosine Similarity)
+- No need to upload heavy `.pkl` files.
+- Poster images fetched live using TMDB API.
+- Fast, efficient, and cloud deployable.
+
+---
+
+## 📣 Acknowledgements
+
+- [TMDB](https://www.themoviedb.org/) for the movie data and API.
+- Streamlit community for easy web app deployment.
+
+---
 
 🚀 **Happy Coding & Movie Watching!** 🍿🎬
